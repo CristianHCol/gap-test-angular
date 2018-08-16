@@ -1,0 +1,10 @@
+@import '../../../theme';
+
+.selected {
+  background: $primary_no_mat;
+}
+
+.item-list:hover {
+  cursor: pointer;
+  background: gray;
+}

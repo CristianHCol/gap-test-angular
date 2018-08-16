@@ -1,0 +1,39 @@
+<td-layout-nav class="body--background">
+  <div td-toolbar-content layout="row" layout-align="center center" flex>
+    <img src="../../../assets/icons/logo.svg" class="logo--size logo-top">
+    <span class="userName--text">Welcome {{user ? user.firstName + ' ' + user.lastName: ''}}</span>
+    <app-header style="width: 100%"></app-header>
+  </div>
+  <div layout-gt-sm="row" tdMediaToggle="gt-xs" [mediaClasses]="['push-sm']">
+    <div flex-gt-sm="60">
+      <h1>{{carList?.length <= 0 ? 'No cars Avaliables!!' : 'Avaliable Cars!'}}
+      </h1>
+      <mat-form-field class="example-full-width">
+          <input matInput placeholder="Filter by model" [(ngModel)]="searchText">
+        </mat-form-field>
+        <button flex mat-raised-button color="primary" [disabled]="!carList || carList.length  < 1" (click)="compare()" class="button--font">Compare</button>
+          <ng-template tdLoading="cars.load">
+              <ng-template let-item let-last="last" ngFor [ngForOf]="carList | filterDataVyText:[searchText, 'model']" >
+                  <mat-card class="padding">
+                      <mat-card-title class="card--title--font">{{item.model}}</mat-card-title>
+                      <mat-card-header>
+                        <img mat-card-avatar [src]="item.picture"/>
+                        <mat-card-title>{{item.mark}}</mat-card-title>
+                        <mat-card-subtitle>{{item.year}}</mat-card-subtitle>
+                        <div fxFlex></div>
+                        <span class="cost">{{item.cost | currencyformat:'USD ':3:',':'.'}}</span>
+                      </mat-card-header>
+                      <mat-card-actions>
+                          <div fxFlex></div>
+                        <button mat-button (click)="showDetail(item)">View detail</button>
+                      </mat-card-actions>
+                    </mat-card>
+                <mat-divider *ngIf="!last" mat-inset></mat-divider>
+             </ng-template>
+           </ng-template>
+    </div>
+  </div>
+  <td-layout-footer class="footer--container">
+    <app-footer></app-footer>
+  </td-layout-footer>
+</td-layout-nav>

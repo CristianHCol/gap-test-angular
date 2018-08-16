@@ -1,0 +1,38 @@
+<td-layout-nav class="body--background">
+  <div td-toolbar-content layout="row" layout-align="center center" flex>
+    <img src="../../../assets/icons/logo.svg" class="logo--size logo-top">
+    <app-header style="width: 100%"></app-header>
+  </div>
+  <div layout-gt-sm="row" tdMediaToggle="gt-xs" [mediaClasses]="['push-sm']">
+    <div flex-gt-sm="60">
+        <mat-card *ngIf="carDetail" class="card padding"  >
+            <mat-card-header>
+              <div mat-card-avatar class="header-image"></div>
+              <mat-card-title>{{car?.model}}</mat-card-title>
+              <mat-card-subtitle>{{car?.mark}}</mat-card-subtitle>
+            </mat-card-header>
+            <img mat-card-image class="detail--car" [src]="car?.picture" alt="Car Photo">
+            <mat-card-content>
+              <p>
+               {{carDetail?.description}}
+              </p>
+            </mat-card-content>
+            <mat-card-actions>
+              <div layout="row" layout-padding>
+                <mat-list>
+                  <h3 mat-subheader>Specification</h3>
+                  <mat-list-item *ngFor="let spec of carDetail.specifications">
+                    <img mat-card-avatar [src]="spec?.icon"/>
+                    <h4 mat-line>{{spec?.key}}: {{spec?.value}}</h4>
+                    <mat-divider></mat-divider>
+                  </mat-list-item>
+                </mat-list>
+               </div>
+            </mat-card-actions>
+          </mat-card>
+    </div>
+  </div>
+  <td-layout-footer class="footer--container">
+    <app-footer></app-footer>
+  </td-layout-footer>
+</td-layout-nav>

@@ -1,0 +1,28 @@
+<td-layout-nav class="body--background">
+    <div td-toolbar-content layout="row" layout-align="center center" flex>
+      <img src="../../../assets/icons/logo.svg" class="logo--size logo-top">
+      <app-header style="width: 100%"></app-header>
+    </div>
+    <div layout-gt-sm="row" tdMediaToggle="gt-xs" [mediaClasses]="['push-sm']">
+      <div flex-gt-sm="60">
+        <h1>Select cars to compare</h1>
+        <button flex mat-raised-button color="primary" [disabled]="carsSelected.length  < 2" (click)="doCompare()" class="button--font">Compare</button>
+           <ng-template tdLoading="cars.load">
+                <ng-template let-item let-last="last" ngFor [ngForOf]="carList" >
+                    <mat-list>
+                        <mat-list-item (click)="selectOotion(item)" class="item-list" [ngClass]="{'selected': item.selected}">
+                            <img mat-card-avatar [src]="item?.picture"/>
+                            <h4 mat-line>{{item?.model}}</h4>
+                            <p mat-line> {{item?.mark}} </p>
+                          <mat-divider></mat-divider>
+                        </mat-list-item>
+                      </mat-list>
+                  <mat-divider *ngIf="!last" mat-inset></mat-divider>
+               </ng-template>
+            </ng-template>
+      </div>
+    </div>
+    <td-layout-footer class="footer--container">
+      <app-footer></app-footer>
+    </td-layout-footer>
+  </td-layout-nav>
