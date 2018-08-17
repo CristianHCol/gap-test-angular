@@ -6,6 +6,8 @@ Niode version v8.11.3
 Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
 
 ## Build
-Run `npm install` to install dependencies
+Run `npm install` to install dependencies.
 Run `npm start` to server the project in your local environment.
 
+## Login
+To login use any user and password would you like
